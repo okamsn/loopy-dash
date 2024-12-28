@@ -1,0 +1,27 @@
+#+title: Loopy Dash
+# Make sure to export all headings as such.  Otherwise, some links to
+# sub-headings won’t work.
+#+options: H:6
+# Some parsers require this option to export footnotes.
+#+options: f:t
+
+# MELPA Badges
+=loopy-dash=: [[https://melpa.org/#/loopy-dash][file:https://melpa.org/packages/loopy-dash-badge.svg]]
+
+-----
+
+Loopy Dash is a package to support destructuring with [[https://github.com/magnars/dash.el][Dash.el]] in the looping and
+iteration package [[https://github.com/okamsn/loopy][Loopy]].  The package requires the packages =dash= and =loopy=.
+
+* Installation
+
+The package =loopy-dash= and the main package =loopy= are both available from
+MELPA.
+
+* Documentation
+
+For information, about =dash.el=, see [[https://github.com/magnars/dash.el]].
+
+For information about Loopy, see its repository on GitHub
+([[https://github.com/okamsn/loopy]]) or the Info documentation that is provided by
+the package.
