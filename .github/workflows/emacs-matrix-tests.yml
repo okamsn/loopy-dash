@@ -1,0 +1,52 @@
+name: Test Emacs Matrix
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+jobs:
+  test:
+    name: 'Install and Test'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        emacs-version:
+          - '27.2'
+          - '28.2'
+          - '29.4'
+          - 'release-snapshot'
+          # - 'snapshot'
+    steps:
+    - uses: actions/checkout@v3
+    - uses: purcell/setup-emacs@master
+      with:
+        version: ${{ matrix.emacs-version }}
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+    - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+    - name: Print working directory
+      run: echo "Current working directory is $PWD"
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
+    - name: Make config dir to guaranteed location.  Do it before we run Emacs the first time.
+      run: mkdir ~/.emacs.d
+    - name: Check Emacs version
+      run: emacs --version
+    - name: Clone package Loopy to sub-folder
+      run: |
+        git clone 'https://github.com/okamsn/loopy.git' ./loopy
+        ls ./loopy
+    - name: Copy package Loopy to sub-sub-folder
+      run: |
+        mkdir --verbose ./loopy/loopy
+        cp --verbose --target-directory=./loopy/loopy ./loopy/*.el
+        ls ./loopy/loopy
+    - name: Install packages
+      run: emacs -batch -l tests/install-script.el
+    - name: Dash tests
+      run: emacs -batch -l tests/load-path.el -l ert -l tests/dash-tests.el -f ert-run-tests-batch-and-exit
+    - run: echo "🍏 This job's status is ${{ job.status }}."
