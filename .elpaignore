@@ -1,0 +1,7 @@
+tests
+Makefile
+.git
+.github
+.gitignore
+.elpaignore
+.dir-locals.el
