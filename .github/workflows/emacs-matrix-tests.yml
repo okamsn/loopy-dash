@@ -39,12 +39,8 @@ jobs:
     - name: Clone package Loopy to sub-folder
       run: |
         git clone 'https://github.com/okamsn/loopy.git' ./loopy
-        ls ./loopy
-    - name: Copy package Loopy to sub-sub-folder
-      run: |
-        mkdir --verbose ./loopy/loopy
-        cp --verbose --target-directory=./loopy/loopy ./loopy/*.el
-        ls ./loopy/loopy
+    - name: Build Tar file for base package
+      run: make --directory=./loopy tar
     - name: Install packages
       run: emacs -batch -l tests/install-script.el
     - name: Dash tests
