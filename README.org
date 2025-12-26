@@ -5,8 +5,11 @@
 # Some parsers require this option to export footnotes.
 #+options: f:t
 
-# MELPA Badges
-=loopy-dash=: [[https://melpa.org/#/loopy-dash][file:https://melpa.org/packages/loopy-dash-badge.svg]]
+# Badges
+[[https://elpa.nongnu.org/nongnu/loopy-dash.html][file:https://elpa.nongnu.org/nongnu/loopy-dash.svg]]
+[[https://elpa.nongnu.org/nongnu-devel/loopy-dash.html][file:https://elpa.nongnu.org/nongnu-devel/loopy-dash.svg]]
+[[https://melpa.org/#/loopy-dash][file:https://melpa.org/packages/loopy-dash-badge.svg]]
+[[https://stable.melpa.org/#/loopy-dash][file:https://stable.melpa.org/packages/loopy-dash-badge.svg]]
 
 -----
 
