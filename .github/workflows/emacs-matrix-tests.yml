@@ -15,9 +15,9 @@ jobs:
     strategy:
       matrix:
         emacs-version:
-          - '27.2'
           - '28.2'
           - '29.4'
+          - '30.2'
           - 'release-snapshot'
           # - 'snapshot'
     steps:
