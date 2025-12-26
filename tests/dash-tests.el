@@ -65,10 +65,11 @@
 
 
 (ert-deftest dash-with-destructuring ()
-  (should (= 7 (eval (quote (loopy (flag dash)
-                                   (with ((&plist :a a  :b b) '(:a 3 :b 4)))
-                                   (repeat 1)
-                                   (return (+ a b))))))))
+  (should (= 14 (eval (quote (loopy (flag dash)
+                                    (with ((&plist :a a  :b b) '(:a 3 :b 4))
+                                          (c (+ a b)))
+                                    (repeat 1)
+                                    (return (+ a b c))))))))
 
 ;; Make sure all variables for the needed settings are properly bound.
 (ert-deftest destructuring-settings-not-escape ()
@@ -221,3 +222,15 @@
                                      (6 7 8 (:k2 . 9) (:k1 . 10))])
                         (collect (a _ c &alist :k1 :k2) elem)
                         (finally-return a c k1 k2)))))
+
+(ert-deftest dash-with-var-destructured-still-detected ()
+  "Make sure destructured `with' variables are still detected by other commands.
+For example, make sure we don't see an error for incompatible accumulations
+since we are binding `acc' in `with'."
+  (should (= 45 (eval '(loopy (flag dash)
+                              (with ((acc b) '(3 4)))
+                              (list i '(1 2 3))
+                              (sum acc i)
+                              (multiply acc i)
+                              (finally-return acc))
+                      t))))

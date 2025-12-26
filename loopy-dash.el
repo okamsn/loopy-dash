@@ -92,9 +92,24 @@
   "Return a way to destructure BINDINGS as if by `-let*'.
 
 Returns a list of two elements:
-1. The symbol `-let*'.
-2. A new list of bindings."
-  (list '-let* bindings))
+1. A list of symbols being all the variables to be bound in BINDINGS.
+2. A function to be called with the code to be wrapped, which
+  should produce wrapped code appropriate for BINDINGS,
+  such as a `let*' form."
+  ;; See also `loopy--pcase-destructure-for-with-vars'
+  (let ((var-list nil)
+        (new-binds))
+    (dolist (b bindings)
+      (let ((pairs (apply #'dash--match b)))
+        (setq var-list (-union var-list (-map #'car pairs)))
+        (push pairs new-binds)))
+    (list var-list
+          (lambda (body)
+            (let ((result (macroexp-progn body)))
+              (dolist (nb new-binds)
+                (setq result `(let* ,nb
+                                ,result)))
+              result)))))
 
 (defun loopy-dash--destructure-for-iteration (var val)
   "Destructure VAL according to VAR as if by `-let'.
