@@ -14,7 +14,7 @@
 -----
 
 Loopy Dash is a package to support destructuring with [[https://github.com/magnars/dash.el][Dash.el]] in the looping and
-iteration package [[https://github.com/okamsn/loopy][Loopy]].  The package requires the packages =dash= and =loopy=.
+iteration package [[https://codeberg.org/okamsn/loopy][Loopy]].  The package requires the packages =dash= and =loopy=.
 
 * Installation
 
@@ -26,5 +26,5 @@ MELPA.
 For information, about =dash.el=, see [[https://github.com/magnars/dash.el]].
 
 For information about Loopy, see its repository on GitHub
-([[https://github.com/okamsn/loopy]]) or the Info documentation that is provided by
+([[https://codeberg.org/okamsn/loopy]]) or the Info documentation that is provided by
 the package.

@@ -4,7 +4,7 @@
 
 ;; Author: Earl Hyatt
 ;; Created: February 2021
-;; URL: https://github.com/okamsn/loopy-dash
+;; URL: https://codeberg.org/okamsn/loopy-dash
 ;; Version: 0.13.0
 ;; Package-Requires: ((emacs "28.1") (loopy "0.13.0") (dash "2.20"))
 ;; Keywords: extensions
