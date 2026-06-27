@@ -19,7 +19,7 @@ iteration package [[https://codeberg.org/okamsn/loopy][Loopy]].  The package req
 * Installation
 
 The package =loopy-dash= and the main package =loopy= are both available from
-MELPA.
+NonGNU ELPA and from MELPA.
 
 * Documentation
 
