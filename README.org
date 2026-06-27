@@ -25,6 +25,6 @@ MELPA.
 
 For information, about =dash.el=, see [[https://github.com/magnars/dash.el]].
 
-For information about Loopy, see its repository on GitHub
+For information about Loopy, see its repository on Codeberg
 ([[https://codeberg.org/okamsn/loopy]]) or the Info documentation that is provided by
 the package.
