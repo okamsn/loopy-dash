@@ -7,13 +7,6 @@
 (require 'loopy)
 (require 'loopy-dash)
 
-(ert-deftest dash-flag-default ()
-  (should (equal '(5 6)
-                 (let ((loopy-default-flags '(dash)))
-                   (eval (quote (loopy (list (&plist :a a  :b b)
-                                             '((:a 3  :b 4) (:a 5 :b 6)))
-                                       (finally-return a b))))))))
-
 (ert-deftest dash-flag-list-destructuring ()
   (should (equal '(1 2)
                  (eval (quote (loopy (flag dash)
@@ -46,19 +39,16 @@
                                      (list [i &rest j] '([1 2 3]))
                                      (collect (list i j))))))))
 
-(ert-deftest dash-flag-default-disable ()
-  :expected-result :failed
-  (should (equal '(5 6)
-                 (let ((loopy-default-flags '(dash)))
-                   (eval (quote (loopy (flag -dash)
-                                       (list (&plist :a a  :b b)
-                                             '((:a 3  :b 4) (:a 5 :b 6)))
-                                       (finally-return a b))))))))
-
-(ert-deftest dash-flag-enable-disable ()
-  :expected-result :failed
+(ert-deftest dash-flag-enable-then-disable ()
   (should (equal '(5 6)
                  (eval (quote (loopy (flag dash -dash)
+                                     (list (&map (:a a) (:b b))
+                                           '((:a 3  :b 4) (:a 5 :b 6)))
+                                     (finally-return a b)))))))
+
+(ert-deftest dash-flag-disable-then-enable ()
+  (should (equal '(5 6)
+                 (eval (quote (loopy (flag -dash dash)
                                      (list (&plist :a a  :b b)
                                            '((:a 3  :b 4) (:a 5 :b 6)))
                                      (finally-return a b)))))))
